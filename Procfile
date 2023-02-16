@@ -1,1 +1,1 @@
-web: gunicorn PLANiT.wsgi --log-file
+web: gunicorn PLANiT.wsgi

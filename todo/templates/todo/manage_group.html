@@ -1,0 +1,38 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Group Manager{% endblock %}
+
+{% block content %}
+
+<h3>Manage Group: {{ group.name }}</h3>
+<hr class="hr hr-blurry" />
+
+<h5><u>Add user:</u></h5>
+
+<p>Group Link: {% url "todo:join_group" group.join_link %}</p>
+
+<form action="{% url 'todo:generate_token' group.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-secondary">Generate Join Token</button>
+</form>
+
+<hr class="hr-blurry" />
+<h5><u>Members:</u></h5>
+    
+    <ul class="list-group list-group-flush">
+        
+    {% for member in members %}
+        {% if member == request.user %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ member.username }} - Admin
+            </li>
+        {% else %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ member.username }} <a class="remove_user" style="text-decoration: none;" href="{% url 'todo:remove_user_from_group' group.id member.id %}">&#215;</a>
+            </li>
+        {% endif %}
+
+    {% endfor %}
+    </ul>
+
+{% endblock %}

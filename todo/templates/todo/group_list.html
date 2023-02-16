@@ -1,0 +1,28 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Groups{% endblock %}
+
+{% block content %}
+<span>
+ <a class="btn btn-secondary btn-sm" href="{% url 'todo:create_group' %}">Create New Group</a>
+</span>
+<hr class="hr-blurry" />
+
+<ul class="list-group list-group-flush">
+    
+    <h5>Your groups:</h5>
+
+    {% for group in groups %}
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'todo:group_tasks' group.id %}">{{ group.name }}</a>
+        </li>
+
+    {% empty %}
+    
+        <h3>No groups to display</a></h3>
+
+    {% endfor %}
+</ul>
+
+{% endblock %}

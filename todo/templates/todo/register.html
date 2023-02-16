@@ -1,0 +1,21 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+  {% if not request.user.is_authenticated %}
+    <h2>Register</h2>
+    <div class="form-group">
+      <form action="{% url 'todo:register' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-secondary" type="submit" value="Register">
+      </form>
+    </div>
+    <p>Already have an account? Please <a href="{% url 'todo:login' %}">Login</a></p>
+  {% else %}
+    <p>You're already logged in and cannot register. Would you like to <a href="{% url 'todo:logout' %}">logout</a>?</p>
+  {% endif %}
+  
+{% endblock %}

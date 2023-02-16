@@ -1,0 +1,29 @@
+{% extends 'todo/layout.html' %}
+
+{% block content %}
+
+    <h5>Delete Tasks:</h5>
+
+    <hr class="hr-blurry" />
+    
+        {% if tasks %}
+            <div class="form-group">
+                <form method="post" action="{% url 'todo:delete_selected_tasks' %}">
+                    {% csrf_token %}
+                    <ul class="list-group list-group-flush">
+                        {% for task in tasks %}
+                            <li class="list-group-item">
+                                <input type="checkbox" name="task_id" value="{{ task.id }}" id="task_{{ task.id }}">
+                                <label for="task_{{ task.id }}">{{ task.title }}</label>
+                            </li>
+                        {% endfor %}
+                        
+                    </ul>
+                    <input class="btn btn-secondary" type="submit" value="Delete Tasks">
+                </form>
+            </div>
+        {% else %}
+            <p>No items to delete.</p>
+        {% endif %}
+        
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Logout{% endblock %}
+
+{% block content %}
+
+  {% if request.user.is_authenticated %}
+  <h5> Are you sure you want logout? </h5>
+    <div class="form-group">
+      <form action="{% url 'todo:logout' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-secondary" type="submit" value="Yes">
+        <a href="{% url 'todo:task_list' %}" class="btn btn-secondary">No</a>
+      </form>
+    </div>
+  {% else %}
+    <p>You're not logged in. Would you like to <a href="{% url 'todo:register' %}"g>Register?</a></p>
+  {% endif %}
+  
+{% endblock %}

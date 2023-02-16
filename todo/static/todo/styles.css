@@ -1,0 +1,78 @@
+body {
+    background-color:  #f1fffa;
+
+}
+
+.card {
+    max-width: 75vh;
+}
+
+.container-sm {
+    margin-top: 7rem;
+}
+
+li a {
+    color: black;
+    text-decoration: none;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+.task-complete {
+    margin-left: 2rem;
+    color: rgb(33, 199, 0);
+    font-size: x-large;
+    line-height: 0;
+}
+
+.task-incomplete {
+    margin-left: 2rem;
+    color: rgb(41, 41, 41);
+    font-size: x-large;
+    line-height: 0;
+}
+
+.btn {
+    margin: 1rem;
+
+}
+
+.task {
+    margin-left: 2rem;
+
+}
+
+.dot-1 {
+    height: 18px;
+    width: 18px;
+    background-color: rgb(0, 204, 0);
+    border-radius: 50%;
+  }
+
+.dot-2 {
+    height: 18px;
+    width: 18px;
+    background-color: rgb(255, 203, 32);
+    border-radius: 50%;
+  }
+
+  .dot-3 {
+    height: 18px;
+    width: 18px;
+    background-color: red;
+    border-radius: 50%;
+  }
+
+.display-1 {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.remove_user {
+    /* margin-left: 1rem; */
+    color: red;
+    font-size: xx-large;
+    line-height: 0;
+}

@@ -1,0 +1,16 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Edit{% endblock %}
+
+{% block content %}
+
+    <h2>Edit</h2>
+    <div class="form-group">
+      <form action="{% url 'todo:edit_task' task.id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-secondary" type="submit" value="Save">
+      </form>
+    </div>
+
+{% endblock %}

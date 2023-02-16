@@ -1,0 +1,58 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+
+<div class="d-flex">
+  <p style="margin-top: 18px;">Sort by:</p>
+    <form method="GET">
+      <div class="row justify-content-start">
+        <div class="col-3">
+          <button class="btn btn-secondary btn-sm" type="submit" name="sort" value="deadline">Deadline</button>
+        </div>
+        <div class="col-4">
+          <select class="form-select" style="margin-top: 14px; width: auto;" name="category">
+            <!-- display select... unless sorting by category then use selected attribute to display current category -->
+            <option value="">Select Category</option>
+            {% for key, value in categories %}
+              <option value="{{ key }}" {% if key == selected_category %} selected {% endif %}> {{ value }} </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-secondary btn-sm" type="submit">Sort</button>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-secondary btn-sm" type="submit" name="sort" value="reset">Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+  <hr class="hr-blurry" />
+
+<ul class="list-group list-group-flush">
+    {% for task in tasks %}
+
+        {% if task.complete %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="dot-{{task.priority}}"></span>
+                <s class="task">{{ task }} - Do by: {{task.deadline|date:"D, d-m-y"}}</s>
+                <a class="task-complete" style="text-decoration: none;" href="{% url 'todo:complete_task' task.id %}">&#10003;</a>
+            </li>
+        {% else %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="dot-{{task.priority}}"></span>
+                <a class="task" href="{% url 'todo:edit_task' task.id %}">{{ task }} - Do by: {{task.deadline|date:"D, d-m-y"}}</a>
+                
+                <a class="task-incomplete" style="text-decoration: none;" href="{% url 'todo:complete_task' task.id %}">&#10003;</a>
+            </li>
+        {% endif %}
+
+    {% empty %}
+        <h3>No items in list</h3>
+
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Create Group{% endblock %}
+
+{% block content %}
+
+<h5>Create a Group:</h5>
+
+<hr class="hr-blurry" />
+
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+        <label for="group_name">Group Name:</label>
+        <input type="text" class="form-control" id="group_name" name="group_name" required>
+  </div>
+  <button type="submit" class="btn btn-secondary">Create Group</button>
+</form>
+
+{% endblock %}

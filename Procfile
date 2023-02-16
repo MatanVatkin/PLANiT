@@ -1,0 +1,1 @@
+web: gunicorn PLANiT.wsgi --log-file

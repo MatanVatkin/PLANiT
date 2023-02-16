@@ -1,0 +1,17 @@
+{% extends 'todo/layout.html' %}
+
+{% block title %}Generate Token{% endblock %}
+
+{% block content %}
+
+<div>
+    {% if token %}
+      <p>Invitation Token: {{ token }}</p>
+    {% endif %}
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-secondary">Generate New Token</button>
+    </form>
+  </div>
+
+{% endblock %}

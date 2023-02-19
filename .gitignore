@@ -1,2 +1,4 @@
 .env
-venvPLANiT
+pyvenv.cfg
+Scripts
+Lib

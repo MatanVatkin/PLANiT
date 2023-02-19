@@ -32,7 +32,7 @@ if not DEBUG:
 
 # FORM SUBMISSION
 
-CSRF_TRUSTED_ORIGINS = [os.environ.get('ALLOWED_HOST')]
+CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED')]
 
 # Application definition
 

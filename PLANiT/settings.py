@@ -24,15 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'rk#xy01fx7)4_m4b4)^5r9&k)ixjyp4x$(2#91&a(j$ow$1y=g')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.environ.get('DEBUG')) == "1" # 1 == Tru
+DEBUG = str(os.environ.get('DEBUG')) == "1" # 1 == True
 
 ALLOWED_HOSTS = []
 if not DEBUG:
     ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOST')]
+    
+    # FORM SUBMISSION
+    CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED')]
 
-# FORM SUBMISSION
-
-CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED')]
 
 # Application definition
 

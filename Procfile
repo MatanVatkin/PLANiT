@@ -1,1 +1,1 @@
-web: gunicorn PLANiT.wsgi
+web: python manage.py migrate && python manage.py collectstatic && gunicorn locallibrary.wsgi

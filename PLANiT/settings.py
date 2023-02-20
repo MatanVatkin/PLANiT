@@ -21,18 +21,35 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'rk#xy01fx7)4_m4b4)^5r9&k)ixjyp4x$(2#91&a(j$ow$1y=g')
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.environ.get('DEBUG')) == "1" # 1 == True
+DEBUG = str(os.environ['DEBUG']) == "1" # 1 == True
+print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dev mode /////////{SECRET_KEY}")
+DEBUG=False
 
 ALLOWED_HOSTS = []
 if not DEBUG:
-    ALLOWED_HOSTS += [os.environ.get('ALLOWED_HOST')]
+    print("env vars passing........................")
+    # Update allowed hosts
+    ALLOWED_HOSTS += [os.environ['ALLOWED_HOST']]
+    for x in ALLOWED_HOSTS:
+        print(f"!!!!!!! {x}")
+    # ALLOWED_HOSTS = ['planit.up.railway.app', '127.0.0.1', 'localhost']
     
     # FORM SUBMISSION
-    CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED')]
-    print("env vars passing........................")
+    CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
+
+    # HTTPS settings
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+
+    # HSTS settings
+    SECURE_HSTS_SECONDS = 31536000 # 1 year
+    SECURE_HSTS_PRELOAD = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    
 
 
 # Application definition
@@ -91,32 +108,15 @@ DATABASES = {
     }
 }
 
-# POSTGRES_DB = os.environ.get("POSTGRES_DB")
-# POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-# POSTGRES_USER = os.environ.get("POSTGRES_USER")
-# POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
-# POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
+# Update database configuration from $DATABASE_URL.
+if not DEBUG:
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
 
-# POSTGRES_READY = (
-#     POSTGRES_DB is not None
-#     and POSTGRES_PASSWORD is not None
-#     and POSTGRES_USER is not None
-#     and POSTGRES_HOST is not None
-#     and POSTGRES_PORT is not None
-# )
-
-# if POSTGRES_READY:
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.postgresql",
-#             "NAME": POSTGRES_DB,
-#             "USER": POSTGRES_USER,
-#             "PASSWORD": POSTGRES_PASSWORD,
-#             "HOST": POSTGRES_HOST,
-#             "PORT": POSTGRES_PORT,
-#         }
-#     }
-
+    # Simplified static file serving.
+    # https://pypi.org/project/whitenoise/
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Password validation
@@ -172,11 +172,3 @@ STORAGES = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-# Simplified static file serving.
-# https://pypi.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

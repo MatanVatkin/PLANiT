@@ -24,31 +24,51 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = str(os.environ['DEBUG']) # 1 == True
+# print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dev mode /////////{SECRET_KEY}")
+
+# ALLOWED_HOSTS = []
+# if not DEBUG:
+#     print("env vars passing........................")
+#     # Update allowed hosts
+#     ALLOWED_HOSTS += [os.environ['ALLOWED_HOST']]
+#     for x in ALLOWED_HOSTS:
+#         print(f"!!!!!!! {x}")
+#     # ALLOWED_HOSTS = ['planit.up.railway.app', '127.0.0.1', 'localhost']
+    
+#     # FORM SUBMISSION
+#     CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
+
+#     # HTTPS settings
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+#     SECURE_SSL_REDIRECT = True
+
+#     # HSTS settings
+#     SECURE_HSTS_SECONDS = 31536000 # 1 year
+#     SECURE_HSTS_PRELOAD = True
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
 DEBUG = os.environ['DEBUG']
-print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dev mode /////////{SECRET_KEY}")
+# Update allowed hosts
+ALLOWED_HOSTS = [os.environ['ALLOWED_HOST']]
+# for x in ALLOWED_HOSTS:
+#     print(f"!!!!!!! {x}")
+# ALLOWED_HOSTS = ['planit.up.railway.app', '127.0.0.1', 'localhost']
 
-ALLOWED_HOSTS = []
-if not DEBUG:
-    print("env vars passing........................")
-    # Update allowed hosts
-    ALLOWED_HOSTS += [os.environ['ALLOWED_HOST']]
-    for x in ALLOWED_HOSTS:
-        print(f"!!!!!!! {x}")
-    # ALLOWED_HOSTS = ['planit.up.railway.app', '127.0.0.1', 'localhost']
-    
-    # FORM SUBMISSION
-    CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
+# FORM SUBMISSION
+CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
 
-    # HTTPS settings
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
+# HTTPS settings
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
-    # HSTS settings
-    SECURE_HSTS_SECONDS = 31536000 # 1 year
-    SECURE_HSTS_PRELOAD = True
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    
+# HSTS settings
+SECURE_HSTS_SECONDS = 31536000 # 1 year
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
 
 
 # Application definition
@@ -109,6 +129,7 @@ DATABASES = {
 
 # Update database configuration from $DATABASE_URL.
 if not DEBUG:
+    print(f"importing DB")
     import dj_database_url
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)

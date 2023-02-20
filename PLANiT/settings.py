@@ -32,6 +32,7 @@ if not DEBUG:
     
     # FORM SUBMISSION
     CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED')]
+    print("env vars passing........................")
 
 
 # Application definition

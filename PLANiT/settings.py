@@ -49,7 +49,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 #     SECURE_HSTS_PRELOAD = True
 #     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-DEBUG = False
+DEBUG = True
 # Update allowed hosts
 ALLOWED_HOSTS = [os.environ['ALLOWED_HOST']]
 # for x in ALLOWED_HOSTS:
@@ -128,15 +128,15 @@ DATABASES = {
 }
 
 # Update database configuration from $DATABASE_URL.
-if not DEBUG:
-    print(f"importing DB")
-    import dj_database_url
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+# if not DEBUG:
+print(f"importing DB")
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
-    # Simplified static file serving.
-    # https://pypi.org/project/whitenoise/
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Simplified static file serving.
+# https://pypi.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Password validation

@@ -49,7 +49,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 #     SECURE_HSTS_PRELOAD = True
 #     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-DEBUG = os.environ['DEBUG']
+DEBUG = False
 # Update allowed hosts
 ALLOWED_HOSTS = [os.environ['ALLOWED_HOST']]
 # for x in ALLOWED_HOSTS:

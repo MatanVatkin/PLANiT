@@ -3,6 +3,17 @@ pyvenv.cfg
 Scripts
 Lib
 
+# not sure about this
+.env/
+.venv/
+env/
+venv/
+*.env
+
+*.pyc
+db.sqlite3
+staticfiles/
+
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 

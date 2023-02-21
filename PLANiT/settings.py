@@ -50,6 +50,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 #     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+
+print(f"...........check env var {DEBUG}")
 # Update allowed hosts
 ALLOWED_HOSTS = [os.environ['ALLOWED_HOST']]
 # for x in ALLOWED_HOSTS:

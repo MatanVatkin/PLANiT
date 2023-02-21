@@ -49,9 +49,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 #     SECURE_HSTS_PRELOAD = True
 #     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.environ.get('DEBUG', '') != 'False'
 
-print(f"...........check env var {DEBUG}")
 # Update allowed hosts
 ALLOWED_HOSTS = [os.environ['ALLOWED_HOST']]
 # for x in ALLOWED_HOSTS:
@@ -63,7 +62,7 @@ CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
 
 # # HTTPS settings
 # SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 # SECURE_SSL_REDIRECT = True
 
 # # HSTS settings
@@ -72,6 +71,7 @@ CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 
+print(f"...........check env var debug-{DEBUG} secret-{SECRET_KEY} allowed-{ALLOWED_HOSTS} csrf-{CSRF_TRUSTED_ORIGINS}")
 
 # Application definition
 

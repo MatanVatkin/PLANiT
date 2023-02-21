@@ -4,14 +4,16 @@
 ### Description:
 This is my CS50 final project!
 
-PLANiT is a simple todo list webapp, using the django framework and python language.
+PLANiT is a simple todo list webapp, using the Django framework and python language.
 The app supports user registration, once registered and logged in a user can create a todo list. Users can add tasks to their todo list as well as edit tasks and mark them as completed. Additionally users can delete unwanted tasks.
-PLANiT allows users to set a priority, deadline, and category for tasks. Users can also sort their todo list by deadline and category or both.
+PLANiT allows users to set a priority, deadline, and category for tasks. Users can also sort their todo list by deadline and category or both. PLANiT also supports group functionality, users can create groups. Users join groups via the groups url and a unique token. The group admin can control group specific functionallitty  
 
 ### Installation and running project:
-- [Python](https://www.python.org/downloads/)
-- [Django](https://docs.djangoproject.com/en/4.1/topics/install/)
 - clone repo
+- download [Python](https://www.python.org/downloads/)
+- create virtual environment
+- use requirements.txt to intall all needed packages
+- create .env file or change related variables 
 - cd into project folder
 - use python manage.py runserver to start the development server
 ### Video Demo:  <URL https://youtu.be/NlzJeEerF2s>

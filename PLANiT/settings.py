@@ -43,9 +43,6 @@ CSRF_COOKIE_SECURE = True
 # SECURE_HSTS_PRELOAD = True
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-
-print(f"...........check env var debug-{DEBUG} secret-{SECRET_KEY} allowed-{ALLOWED_HOSTS} csrf-{CSRF_TRUSTED_ORIGINS}")
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -108,7 +105,7 @@ print(f"importing DB")
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-print(f"db url - {db_from_env}")
+
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

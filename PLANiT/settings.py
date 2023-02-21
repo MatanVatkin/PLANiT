@@ -23,39 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = str(os.environ['DEBUG']) # 1 == True
-# print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dev mode /////////{SECRET_KEY}")
-
-# ALLOWED_HOSTS = []
-# if not DEBUG:
-#     print("env vars passing........................")
-#     # Update allowed hosts
-#     ALLOWED_HOSTS += [os.environ['ALLOWED_HOST']]
-#     for x in ALLOWED_HOSTS:
-#         print(f"!!!!!!! {x}")
-#     # ALLOWED_HOSTS = ['planit.up.railway.app', '127.0.0.1', 'localhost']
-    
-#     # FORM SUBMISSION
-#     CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
-
-#     # HTTPS settings
-#     SESSION_COOKIE_SECURE = True
-#     CSRF_COOKIE_SECURE = True
-#     SECURE_SSL_REDIRECT = True
-
-#     # HSTS settings
-#     SECURE_HSTS_SECONDS = 31536000 # 1 year
-#     SECURE_HSTS_PRELOAD = True
-#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 # Update allowed hosts
 ALLOWED_HOSTS = [os.environ['DJANGO_ALLOWED_HOST']]
-# for x in ALLOWED_HOSTS:
-#     print(f"!!!!!!! {x}")
-# ALLOWED_HOSTS = ['planit.up.railway.app', '127.0.0.1', 'localhost']
 
 # FORM SUBMISSION
 CSRF_TRUSTED_ORIGINS = [os.environ['DJANGO_CSRF_TRUSTED_ORIGINS']]
@@ -63,6 +34,8 @@ CSRF_TRUSTED_ORIGINS = [os.environ['DJANGO_CSRF_TRUSTED_ORIGINS']]
 # HTTPS settings
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+# not sure why these arent working
 # SECURE_SSL_REDIRECT = True
 
 # # HSTS settings

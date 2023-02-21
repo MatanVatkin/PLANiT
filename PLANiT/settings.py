@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = str(os.environ['DEBUG']) # 1 == True
@@ -49,26 +49,26 @@ SECRET_KEY = os.environ['SECRET_KEY']
 #     SECURE_HSTS_PRELOAD = True
 #     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
-DEBUG = os.environ.get('DEBUG', '') != 'False'
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 # Update allowed hosts
-ALLOWED_HOSTS = [os.environ['ALLOWED_HOST']]
+ALLOWED_HOSTS = [os.environ['DJANGO_ALLOWED_HOST']]
 # for x in ALLOWED_HOSTS:
 #     print(f"!!!!!!! {x}")
 # ALLOWED_HOSTS = ['planit.up.railway.app', '127.0.0.1', 'localhost']
 
 # FORM SUBMISSION
-CSRF_TRUSTED_ORIGINS = [os.environ['CSRF_TRUSTED_ORIGINS']]
+CSRF_TRUSTED_ORIGINS = [os.environ['DJANGO_CSRF_TRUSTED_ORIGINS']]
 
-# # HTTPS settings
-# SESSION_COOKIE_SECURE = True
+# HTTPS settings
+SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-# SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
 
-# # HSTS settings
-# SECURE_HSTS_SECONDS = 31536000 # 1 year
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# HSTS settings
+SECURE_HSTS_SECONDS = 31536000 # 1 year
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 
 print(f"...........check env var debug-{DEBUG} secret-{SECRET_KEY} allowed-{ALLOWED_HOSTS} csrf-{CSRF_TRUSTED_ORIGINS}")
@@ -135,7 +135,7 @@ print(f"importing DB")
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
+print(f"db url - {db_from_env}")
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

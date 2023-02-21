@@ -35,7 +35,7 @@ CSRF_TRUSTED_ORIGINS = [os.environ['DJANGO_CSRF_TRUSTED_ORIGINS']]
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-# not sure why these arent working
+# not sure why these aren't working
 # SECURE_SSL_REDIRECT = True
 
 # # HSTS settings
@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # 'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -100,8 +100,6 @@ DATABASES = {
 }
 
 # Update database configuration from $DATABASE_URL.
-# if not DEBUG:
-print(f"importing DB")
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
